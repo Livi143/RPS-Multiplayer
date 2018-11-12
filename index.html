@@ -1,0 +1,85 @@
+ <!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Rock Paper Scissors Review Session</title>
+</head>
+
+<body>
+
+	<div id="game">
+        <p>User guess: <span id="userGuess"></span></p>
+        <p>Computer guess: <span id="computerGuess"></span></p>
+        <p>Wins: <span id="wins"></span></p>
+        <p>Loses: <span id="losses"></span></p>
+        <p>Ties: <span id="ties"></span></p>
+    </div>
+
+	<script type="text/javascript">
+        // Our JS magic goes here!
+        // vars: userGuess, computerGuess, computerChoices (array), wins, losses, ties
+        var computerChoices = ["r", "p", "s"]; // lowercase for consistency sake (user will most likely input lowercase)
+        
+         // these are initialized to 0, but will be updated later
+        var wins = 0;
+        var losses = 0;
+        var ties = 0;
+
+        // when user types (onkeyup), run function 
+        document.onkeyup = function(event) {
+            console.log(event.key);
+            var userGuess = event.key.toLowerCase();
+
+            // restrict it so game only runs if user pressed R, P or S, 
+            if (userGuess === "r" || userGuess === "p" || userGuess === "s") {
+                var computerGuess = computerChoices[Math.floor(Math.random()*computerChoices.length)]; // this formula outputs: 0, 1, 2 only video mins: 25-30 explaination
+                console.log("My Guess:"+ userGuess + " | computer guess "+ computerGuess);
+
+                // user wins:    
+                if ((userGuess === "r" && computerGuess === "s")||(userGuess === "s" && computerGuess === "p") || (userGuess==="p"&& computerGuess==="r")) {
+                    wins++;
+                }  else if (userGuess === computerGuess ){
+                    ties++;
+                }   else {
+                    losses++;
+                }
+                 // set computer choice
+                 // determine win/loss/draw
+                // if (userGuess === "r" && computerGuess === "p"){
+                //     losses++;
+                //     // update appropriate counter vars
+                // }   else if (userGuess === "r" && computerGuess === "s"){
+                //     wins++;
+                // }   else if (userGuess === "s" && computerGuess === "p") {
+                //     wins++;
+                // }   else if (userGuess === "s" && computerGuess ==="r") {
+                //     losses++;
+                // }   else if (userGuess==="p"&& computerGuess==="r") {
+                //     wins++;
+                // }   else if (userGuess==="p"&& computerGuess==="s") {
+                //     losses++;
+                // }   else if (userGuess===computerGuess){
+                //     ties++;
+                // }
+                     // update page to show most recent scores (wins/loss/ties), comp and user guess
+                     document.getElementById("userGuess").textContent = userGuess;
+                     document.getElementById("computerGuess").textContent = computerGuess;
+                     document.getElementById("wins").textContent = wins;
+                     document.getElementById("losses").textContent = losses;
+                     document.getElementById("ties").textContent = ties;
+                    // optionally add msg to user if they make an incorrect choice
+            }   else {
+                alert("please press either r or p or s")
+            }
+            
+        
+           
+                }       
+            
+        //    
+	</script>
+
+</body>
+
+</html>
